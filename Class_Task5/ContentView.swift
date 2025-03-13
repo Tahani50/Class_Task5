@@ -9,16 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        // TabView to manage multiple tabs in the app
+        TabView {
+            // Home tab
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house") // Tab label and icon
+                }
+            
+            // Favorites tab
+            FavoritesView()
+                .tabItem {
+                    Label("Favorites", systemImage: "heart") // Tab label and icon
+                }
+            
+            // Profile tab
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle") // Tab label and icon
+                }
         }
-        .padding()
+        .accentColor(.green) // Sets the selected tab's accent color
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(FavoritesManager())
 }
